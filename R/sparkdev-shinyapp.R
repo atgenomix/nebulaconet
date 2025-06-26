@@ -1,5 +1,3 @@
-
-
 NebulaCoNet_sparkdev <- function(master = "sc://172.18.0.1:15002", method = "spark_connect", version = "3.5") {
     plan(multisession, workers = parallel::detectCores() - 1)
 
