@@ -367,3 +367,7 @@ dev.off()
 
 
 
+sc <- sparklyr::spark_connect(master = "local", version = "3.5", method = "shell")
+iris_tbl <- copy_to(sc, iris, name = "iris_tbl", overwrite = TRUE)
+cols <- c("Sepal_Length", "Sepal_Width", "Petal_Length" )
+ml_corr(iris_tbl, col = cols, method = "pearson")
