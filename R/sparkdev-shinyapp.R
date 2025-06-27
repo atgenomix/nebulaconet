@@ -127,13 +127,13 @@ NebulaCoNet_sparkdev <- function(master = "sc://172.18.0.1:15002", method = "spa
         DEG_summary <- reactiveVal(NULL)
         wide_data <- reactiveVal(NULL)
         maeColData <- reactiveVal(NULL)
-        # if (is.null(master)) {
-        #     if (Sys.getenv("SPARK_CONNECT_ENDPOINT") != "") {
-        #         master <- Sys.getenv("SPARK_CONNECT_ENDPOINT")
-        #     } else{
-        #         master <- "sc://172.18.0.1:15002"
-        #     }
-        # } 
+        if (is.null(master)) {
+            if (Sys.getenv("SPARK_K8S_ENDPOINT") != "") {
+                master <- Sys.getenv("SPARK_K8S_ENDPOINT")
+            } else{
+                master <- "sc://172.18.0.1:15002"
+            }
+        } 
         sc <- sparklyr::spark_connect(master = master, method = method, version = version)
         print(sc)
 
